@@ -76,11 +76,12 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/inputLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Button" />
+        android:onClick="onClickConfirm"
+        android:text="Confirm" />
 </RelativeLayout>
