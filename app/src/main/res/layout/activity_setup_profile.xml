@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SetupProfile">
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="Palitan ang layout height gawin48dp" />
-
     <LinearLayout
         android:id="@+id/inputLayout"
         android:layout_width="300dp"
@@ -28,8 +21,9 @@
             android:layout_height="48dp"
             android:ems="10"
             android:drawableStart="@drawable/user_svgrepo_com"
+            android:drawablePadding="20dp"
             android:inputType="textPersonName"
-            android:hint="    Name" />
+            android:hint="Name" />
 
         <EditText
             android:id="@+id/etGender"
@@ -37,8 +31,9 @@
             android:layout_height="48dp"
             android:ems="10"
             android:drawableStart="@drawable/gender_mark_1_svgrepo_com"
+            android:drawablePadding="20dp"
             android:inputType="textPersonName"
-            android:hint="    Gender" />
+            android:hint="Gender" />
 
         <EditText
             android:id="@+id/etAge"
@@ -46,42 +41,55 @@
             android:layout_height="48dp"
             android:ems="10"
             android:drawableStart="@drawable/hour_glass_svgrepo_com"
-            android:inputType="textPersonName"
-            android:hint="     Age" />
+            android:drawablePadding="20dp"
+            android:inputType="number"
+            android:hint="Age" />
         <EditText
             android:id="@+id/etHeight"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:ems="10"
             android:drawableStart="@drawable/human_height_alt_svgrepo_com__1_"
-            android:inputType="textPersonName"
-            android:hint="     Height" />
+            android:drawablePadding="20dp"
+            android:inputType="number"
+            android:hint="Height" />
+
         <EditText
             android:id="@+id/etWeight"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:ems="10"
             android:drawableStart="@drawable/weight_scale_svgrepo_com"
-            android:inputType="textPersonName"
-            android:hint="     Weight" />
+            android:drawablePadding="20dp"
+            android:inputType="number"
+            android:hint="Weight" />
 
         <EditText
             android:id="@+id/etWakeUpTime"
-            android:hint="     Wakeup Time"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:ems="10"
             android:drawableStart="@drawable/alarm_clock_svgrepo_com__1_"
-            android:inputType="time" />
+            android:drawablePadding="20dp"
+            android:inputType="none"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:onClick="setTime"
+            android:hint="Wakeup Time"
+            tools:ignore="OnClick" />
 
         <EditText
             android:id="@+id/etBedTime"
-            android:hint="      Bedtime"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:ems="10"
             android:drawableStart="@drawable/bedtime_svgrepo_com"
-            android:inputType="time" />
+            android:drawablePadding="20dp"
+            android:inputType="none"
+            android:focusable="false"
+            android:cursorVisible="false"
+            android:onClick="setTime"
+            android:hint="Bedtime" />
 
 
     </LinearLayout>
