@@ -4,23 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_alignBottom="@id/imageView"
-        android:layout_marginBottom="-295dp"
-        android:background="@drawable/wave_bg" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="648dp"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_alignBottom="@id/imageView"
-        android:layout_marginTop="-290dp"
-        android:layout_marginBottom="-54dp"
-        android:background="@drawable/wave__1_" />
 
     <TextView
         android:layout_width="wrap_content"
