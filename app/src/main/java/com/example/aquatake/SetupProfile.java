@@ -34,57 +34,74 @@ public class SetupProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_profile);
-        etName      = findViewById(R.id.etName);
-        etGender    = findViewById(R.id.etGender);
-        etAge       = findViewById(R.id.etAge);
-        etHeight    = findViewById(R.id.etHeight);
-        etWeight    = findViewById(R.id.etWeight);
-        etWakeUpTime = findViewById(R.id.etWakeUpTime);
-        etBedTime   = findViewById(R.id.etBedTime);
+
+        etName          = findViewById(R.id.etName);
+        etGender        = findViewById(R.id.etGender);
+        etAge           = findViewById(R.id.etAge);
+        etHeight        = findViewById(R.id.etHeight);
+        etWeight        = findViewById(R.id.etWeight);
+        etWakeUpTime    = findViewById(R.id.etWakeUpTime);
+        etBedTime       = findViewById(R.id.etBedTime);
 
         db = new DatabaseManager(this);
 
-        if (db.CheckExistingProfile()) {
-            String[][] profileInfo = db.getProfileData();
-            etName.setText(profileInfo[0][0]);
-            etGender.setText(profileInfo[0][1]);
-            etAge.setText(profileInfo[0][2]);
-            etHeight.setText(profileInfo[0][3]);
-            etWeight.setText(profileInfo[0][4]);
-            etWakeUpTime.setText(profileInfo[0][5]);
-            etBedTime.setText(profileInfo[0][6]);
+        // Check if there's an existing profile
+        if (db.hasExistingProfile()) {
+            // Retrieve profile data from the database
+            String[] profileData = db.getProfileData();
+
+            // Puts the retrieved data into the fields
+            etName.setText(profileData[0]);
+            etGender.setText(profileData[1]);
+            etAge.setText(profileData[2]);
+            etHeight.setText(profileData[3]);
+            etWeight.setText(profileData[4]);
+            etWakeUpTime.setText(profileData[5]);
+            etBedTime.setText(profileData[6]);
         }
     }
+
     public void onClickConfirm(View view) {
-        this.name        = etName.getText().toString();
-        this.gender      = etGender.getText().toString();
-        this.age         = etAge.getText().toString();
-        this.height      = etHeight.getText().toString();
-        this.weight      = etWeight.getText().toString();
-        this.wakeUpTime  = etWakeUpTime.getText().toString();
-        this.bedTime     = etBedTime.getText().toString();
+        // Get the values from EditTexts
+        name        = etName.getText().toString().trim();
+        gender      = etGender.getText().toString().trim();
+        age         = etAge.getText().toString().trim();
+        height      = etHeight.getText().toString().trim();
+        weight      = etWeight.getText().toString().trim();
+        wakeUpTime  = etWakeUpTime.getText().toString().trim();
+        bedTime     = etBedTime.getText().toString().trim();
 
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(age) ||
-                TextUtils.isEmpty(height) || TextUtils.isEmpty(weight) ||
-                TextUtils.isEmpty(wakeUpTime) || TextUtils.isEmpty(bedTime)) {
-            Toast.makeText(this, "PLEASE FILL EMPTY FIELDS", Toast.LENGTH_SHORT).show();
-            return;
+
+        try {
+            // Check if any of the fields is empty
+            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(age) ||
+                    TextUtils.isEmpty(height) || TextUtils.isEmpty(weight) ||
+                    TextUtils.isEmpty(wakeUpTime) || TextUtils.isEmpty(bedTime)) {
+                Toast.makeText(this, "Please fill in missing fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Save the profile to the database
+            db.insertSingleUserProfile(
+                    name,
+                    gender,
+                    Integer.parseInt(age),
+                    Integer.parseInt(height),
+                    Integer.parseInt(weight),
+                    wakeUpTime,
+                    bedTime);
+
+            // Navigate to the Home activity
+            startActivity(new Intent(SetupProfile.this, Home.class));
+
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid number format for age, height, or weight", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
-
-        try{
-            db.onProfileSetup(this,
-                    this.name,
-                    this.gender,
-                    Integer.parseInt(this.age),
-                    Integer.parseInt(this.height),
-                    Integer.parseInt(this.weight),
-                    this.wakeUpTime,
-                    this.bedTime);
-        } catch (NumberFormatException e){
-        }
-
-        startActivity(new Intent(SetupProfile.this, Home.class));
     }
+
     public void setTime(View view) {
         TimePickerDialog timePickerDialog = new TimePickerDialog(SetupProfile.this, new TimePickerDialog.OnTimeSetListener() {
             @Override

@@ -15,14 +15,5 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         db = new DatabaseManager(this);
-
-    }
-
-
-    public void onClickGoToSetUp(View view) {
-        startActivity(new Intent(Home.this, SetupProfile.class));
-    }
-    public void checkProfiles(View view) {
-        Toast.makeText(this, "" + db.CheckExistingProfile(), Toast.LENGTH_SHORT).show();
     }
 }

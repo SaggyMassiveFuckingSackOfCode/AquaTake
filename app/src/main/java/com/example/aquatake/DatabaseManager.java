@@ -66,71 +66,51 @@ public class DatabaseManager extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void onProfileSetup(Context context, String name, String gender, int age, int height, int weight, String bedtime, String wakeupTime) {
-        SQLiteDatabase db = getWritableDatabase();
-
-        // Check if a profile already exists
-        if (CheckExistingProfile()) {
-            // Update the existing profile
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_NAME, name);
-            contentValues.put(COLUMN_GENDER, gender);
-            contentValues.put(COLUMN_AGE, age);
-            contentValues.put(COLUMN_HEIGHT, height);
-            contentValues.put(COLUMN_WEIGHT, weight);
-            contentValues.put(COLUMN_BEDTIME, bedtime);
-            contentValues.put(COLUMN_WAKEUP_TIME, wakeupTime);
-
-            // Update the existing row in the user_profile table
-            db.update(TABLE_USERPROFILE, contentValues, null, null);
-            Toast.makeText(context, "PROFILE UPDATED", Toast.LENGTH_LONG).show();
-        } else {
-            // Insert a new profile if none exists
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_NAME, name);
-            contentValues.put(COLUMN_GENDER, gender);
-            contentValues.put(COLUMN_AGE, age);
-            contentValues.put(COLUMN_HEIGHT, height);
-            contentValues.put(COLUMN_WEIGHT, weight);
-            contentValues.put(COLUMN_BEDTIME, bedtime);
-            contentValues.put(COLUMN_WAKEUP_TIME, wakeupTime);
-
-            db.insert(TABLE_USERPROFILE, null, contentValues);
-            Toast.makeText(context, "PROFILE CREATED", Toast.LENGTH_LONG).show();
-        }
-
-        // Close the database after completing the operations
-        db.close();
-    }
-
-
-
-    public boolean CheckExistingProfile() {
+    public boolean hasExistingProfile() {
         SQLiteDatabase db = this.getReadableDatabase();
-        long count = DatabaseUtils.queryNumEntries(db, TABLE_USERPROFILE);
-        db.close();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERPROFILE, null);
+        int count = cursor.getCount();
+        cursor.close();
         return count > 0;
     }
 
-    public String[][] getProfileData() {
-        ArrayList<String[]> list = new ArrayList<>();
+    public String[] getProfileData() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERPROFILE, null);
-        if(cursor.moveToFirst()){
-            do{
-                list.add(new String[]{
-                        cursor.getString(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5),
-                        cursor.getString(6),
-                });
-            }while(cursor.moveToNext());
+        String[] profileData = new String[7];
+
+        Cursor cursor       = db.rawQuery("SELECT * FROM " + TABLE_USERPROFILE, null);
+        if (cursor.moveToFirst()) {
+            profileData[0] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+            profileData[1] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GENDER));
+            profileData[2] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGE)));
+            profileData[3] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_HEIGHT)));
+            profileData[4] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WEIGHT)));
+            profileData[5] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WAKEUP_TIME));
+            profileData[6] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BEDTIME));
         }
+
         cursor.close();
         db.close();
-        return list.toArray(new String[0][0]);
+
+        return profileData;
+    }
+
+    public void insertSingleUserProfile(String name, String gender, int age, int height, int weight, String wakeupTime, String bedtime) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_USERPROFILE, null, null);
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_NAME, name);
+        contentValues.put(COLUMN_GENDER, gender);
+        contentValues.put(COLUMN_AGE, age);
+        contentValues.put(COLUMN_HEIGHT, height);
+        contentValues.put(COLUMN_WEIGHT, weight);
+        contentValues.put(COLUMN_WAKEUP_TIME, wakeupTime);
+        contentValues.put(COLUMN_BEDTIME, bedtime);
+
+        db.insert(TABLE_USERPROFILE, null, contentValues);
+
+        db.close();
     }
 }

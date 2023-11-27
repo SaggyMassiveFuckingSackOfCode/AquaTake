@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                if(!db.CheckExistingProfile()){
+                if(!db.hasExistingProfile()){
                     startActivity(new Intent(MainActivity.this, SetupProfile.class));
                 } else {
                     startActivity(new Intent(MainActivity.this, Home.class));
