@@ -1,5 +1,3 @@
-# AquaTake
-School Project
 # AquaTake - Water Intake Tracker App
 
 AquaTake is an Android app designed to help users track their daily water intake. 
