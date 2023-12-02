@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="1000dp"
+    android:layout_height="wrap_content"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp"
     android:fillViewport="true">
@@ -29,26 +27,27 @@
             app:layout_constraintVertical_bias="0.198">
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/etAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="text"
+                android:inputType="number"
                 android:singleLine="true"
-                android:text="mL" />
+                android:hint="mL" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnDrink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Drink"
+                android:onClick="onClickDrink"/>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvProgress"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
@@ -66,20 +65,33 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginBottom="28dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintBottom_toTopOf="@+id/tvProgress"
+            app:layout_constraintEnd_toEndOf="@+id/tvProgress"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView3" />
+            app:layout_constraintStart_toStartOf="@+id/tvProgress" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClickClear"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="@+id/loRecords"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.245" />
 
         <LinearLayout
             android:id="@+id/loRecords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="192dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"></LinearLayout>
-
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.143">
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

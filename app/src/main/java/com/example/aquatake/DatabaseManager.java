@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -73,28 +76,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         cursor.close();
         return count > 0;
     }
-
-    public String[] getProfileData() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String[] profileData = new String[7];
-
-        Cursor cursor       = db.rawQuery("SELECT * FROM " + TABLE_USERPROFILE, null);
-        if (cursor.moveToFirst()) {
-            profileData[0] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
-            profileData[1] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GENDER));
-            profileData[2] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGE)));
-            profileData[3] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_HEIGHT)));
-            profileData[4] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WEIGHT)));
-            profileData[5] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WAKEUP_TIME));
-            profileData[6] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BEDTIME));
-        }
-
-        cursor.close();
-        db.close();
-
-        return profileData;
-    }
-
     public void insertSingleUserProfile(String name, String gender, int age, int height, int weight, String wakeupTime, String bedtime) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -111,6 +92,93 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         db.insert(TABLE_USERPROFILE, null, contentValues);
 
+        db.close();
+    }
+
+    public void insertIntakeRecord(String date, String time, int amount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_DATE, date);
+        contentValues.put(COLUMN_TIME, time);
+        contentValues.put(COLUMN_AMOUNT, amount);
+
+        db.insert(TABLE_INTAKE_RECORD, null, contentValues);
+
+        db.close();
+    }
+
+    public String[] getProfileData() {
+        SQLiteDatabase db  = this.getReadableDatabase();
+        String[] profileData = new String[7];
+
+        Cursor cursor      = db.rawQuery("SELECT * FROM " + TABLE_USERPROFILE, null);
+        if (cursor.moveToFirst()) {
+            profileData[0] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
+            profileData[1] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GENDER));
+            profileData[2] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGE)));
+            profileData[3] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_HEIGHT)));
+            profileData[4] = String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WEIGHT)));
+            profileData[5] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WAKEUP_TIME));
+            profileData[6] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BEDTIME));
+        }
+
+        cursor.close();
+        db.close();
+
+        return profileData;
+    }
+
+    public String[][] getIntakeRecord() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String[]> list = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_INTAKE_RECORD, null);
+        if(cursor.moveToFirst()){
+            do{
+                list.add(new String[]{
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AMOUNT))
+                });
+            }while(cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return list.toArray(new String[0][0]);
+    }
+
+    public String[][] getIntakeRecordForToday() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String[]> list = new ArrayList<>();
+
+        // Get the current date in the format "MM-dd-yyyy"
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault());
+        String todayDate = dateFormat.format(Calendar.getInstance().getTime());
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_INTAKE_RECORD +
+                        " WHERE DATE(" + COLUMN_DATE + ") = DATE(?)",
+                new String[]{todayDate});
+
+        if(cursor.moveToFirst()) {
+            do {
+                list.add(new String[]{
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AMOUNT))
+                });
+            } while(cursor.moveToNext());
+        }
+
+        db.close();
+        cursor.close();
+        return list.toArray(new String[0][0]);
+    }
+    public void clearRecords(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_INTAKE_RECORD, null, null);
         db.close();
     }
 }

@@ -27,14 +27,12 @@ public class SetupProfile extends AppCompatActivity {
     private EditText etWeight;
     private EditText etWakeUpTime;
     private EditText etBedTime;
-
     private DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_profile);
-
         etName          = findViewById(R.id.etName);
         etGender        = findViewById(R.id.etGender);
         etAge           = findViewById(R.id.etAge);
@@ -42,15 +40,9 @@ public class SetupProfile extends AppCompatActivity {
         etWeight        = findViewById(R.id.etWeight);
         etWakeUpTime    = findViewById(R.id.etWakeUpTime);
         etBedTime       = findViewById(R.id.etBedTime);
-
         db = new DatabaseManager(this);
-
-        // Check if there's an existing profile
         if (db.hasExistingProfile()) {
-            // Retrieve profile data from the database
             String[] profileData = db.getProfileData();
-
-            // Puts the retrieved data into the fields
             etName.setText(profileData[0]);
             etGender.setText(profileData[1]);
             etAge.setText(profileData[2]);
@@ -62,7 +54,6 @@ public class SetupProfile extends AppCompatActivity {
     }
 
     public void onClickConfirm(View view) {
-        // Get the values from EditTexts
         name        = etName.getText().toString().trim();
         gender      = etGender.getText().toString().trim();
         age         = etAge.getText().toString().trim();
@@ -70,18 +61,13 @@ public class SetupProfile extends AppCompatActivity {
         weight      = etWeight.getText().toString().trim();
         wakeUpTime  = etWakeUpTime.getText().toString().trim();
         bedTime     = etBedTime.getText().toString().trim();
-
-
         try {
-            // Check if any of the fields is empty
-            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(age) ||
-                    TextUtils.isEmpty(height) || TextUtils.isEmpty(weight) ||
-                    TextUtils.isEmpty(wakeUpTime) || TextUtils.isEmpty(bedTime)) {
-                Toast.makeText(this, "Please fill in missing fields", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(age)
+                    || TextUtils.isEmpty(height) || TextUtils.isEmpty(weight)
+                    || TextUtils.isEmpty(wakeUpTime) || TextUtils.isEmpty(bedTime)) {
+                Toast.makeText(this, "Please fill in missing field(s)", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            // Save the profile to the database
             db.insertSingleUserProfile(
                     name,
                     gender,
@@ -90,10 +76,7 @@ public class SetupProfile extends AppCompatActivity {
                     Integer.parseInt(weight),
                     wakeUpTime,
                     bedTime);
-
-            // Navigate to the Home activity
             startActivity(new Intent(SetupProfile.this, Home.class));
-
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid number format for age, height, or weight", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
