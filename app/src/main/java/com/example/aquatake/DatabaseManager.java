@@ -78,9 +78,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
     public void insertSingleUserProfile(String name, String gender, int age, int height, int weight, String wakeupTime, String bedtime) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         db.delete(TABLE_USERPROFILE, null, null);
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, name);
         contentValues.put(COLUMN_GENDER, gender);
@@ -89,29 +87,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
         contentValues.put(COLUMN_WEIGHT, weight);
         contentValues.put(COLUMN_WAKEUP_TIME, wakeupTime);
         contentValues.put(COLUMN_BEDTIME, bedtime);
-
         db.insert(TABLE_USERPROFILE, null, contentValues);
-
         db.close();
     }
 
     public void insertIntakeRecord(String date, String time, int amount) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_DATE, date);
         contentValues.put(COLUMN_TIME, time);
         contentValues.put(COLUMN_AMOUNT, amount);
-
         db.insert(TABLE_INTAKE_RECORD, null, contentValues);
-
         db.close();
     }
 
     public String[] getProfileData() {
         SQLiteDatabase db  = this.getReadableDatabase();
         String[] profileData = new String[7];
-
         Cursor cursor      = db.rawQuery("SELECT * FROM " + TABLE_USERPROFILE, null);
         if (cursor.moveToFirst()) {
             profileData[0] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME));
@@ -122,17 +114,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
             profileData[5] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_WAKEUP_TIME));
             profileData[6] = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BEDTIME));
         }
-
         cursor.close();
         db.close();
-
         return profileData;
     }
 
     public String[][] getIntakeRecord() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String[]> list = new ArrayList<>();
-
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_INTAKE_RECORD, null);
         if(cursor.moveToFirst()){
             do{
@@ -151,9 +140,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public String[][] getIntakeRecordForToday() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String[]> list = new ArrayList<>();
-
-        // Get the current date in the format "MM-dd-yyyy"
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault());
         String todayDate = dateFormat.format(Calendar.getInstance().getTime());
 
@@ -171,7 +157,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 });
             } while(cursor.moveToNext());
         }
-
         db.close();
         cursor.close();
         return list.toArray(new String[0][0]);

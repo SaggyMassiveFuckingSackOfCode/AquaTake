@@ -49,7 +49,6 @@ public class Home extends AppCompatActivity {
         viewLayout = findViewById(R.id.loRecords);
         fade = new Fade();
         fade.setDuration(300);
-
         displayRecords();
     }
 
@@ -78,7 +77,6 @@ public class Home extends AppCompatActivity {
     public void displayRecords() {
         viewLayout.removeAllViews();
         String[][] intakeRecords = db.getIntakeRecordForToday();
-
         for (String[] record : intakeRecords) {
             LinearLayout recordLayout = new LinearLayout(this);
             recordLayout.setBackgroundColor(Color.parseColor("#808080"));
