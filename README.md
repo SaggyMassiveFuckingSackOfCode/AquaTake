@@ -10,5 +10,5 @@ It's currently a work in progress and aims to provide users with a simple and ef
 - **SetupProfile:** Update your profile information.
 - **Database Integration:** Utilizes SQLite database to store user profiles and intake records.
 
-Ilabas mo na ang iyong tambol ang torotot mong itinago sa baol.
+Ilabas mo na ang iyong tambol ang torotot mong itinago sa baol..
 
