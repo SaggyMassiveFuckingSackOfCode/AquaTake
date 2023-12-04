@@ -3,11 +3,8 @@ package com.example.aquatake;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private DatabaseManager db;
