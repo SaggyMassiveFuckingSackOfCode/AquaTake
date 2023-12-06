@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SecondFragment">
 
@@ -17,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.08"
-        app:srcCompat="@drawable/user_svgrepo_com" />
+        app:srcCompat="@drawable/user_settings_filled_svgrepo_com" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -36,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:drawableEnd="@drawable/user_svgrepo_com"
             android:text="Name: "
             android:textSize="20dp" />
 
@@ -44,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:drawableEnd="@drawable/gender_mark_1_svgrepo_com"
             android:text="Gender: "
             android:textSize="20dp" />
 
@@ -52,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:drawableEnd="@drawable/hour_glass_svgrepo_com"
             android:text="Age: "
             android:textSize="20dp" />
 
@@ -60,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:drawableEnd="@drawable/human_height_alt_svgrepo_com__1_"
             android:text="Height: "
             android:textSize="20dp" />
 
@@ -68,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:drawableEnd="@drawable/weight_scale_svgrepo_com"
             android:text="Weight: "
             android:textSize="20dp" />
 
@@ -76,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:drawableEnd="@drawable/alarm_clock_svgrepo_com__1_"
             android:text="Wake Up \ntime: "
             android:textSize="20dp" />
 
@@ -83,6 +90,7 @@
             android:id="@+id/tvBedTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/bedtime_svgrepo_com"
             android:layout_marginVertical="10dp"
             android:text="Bedtime: "
             android:textSize="20dp" />

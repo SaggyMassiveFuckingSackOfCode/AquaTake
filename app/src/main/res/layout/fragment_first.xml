@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".FirstFragment">
 
     <ImageView
@@ -25,6 +26,7 @@
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
+        android:drawableStart="@drawable/goal_svgrepo_com"
         android:gravity="center"
         android:text="PROGRESS / GOAL"
         android:textSize="25dp"
@@ -50,6 +52,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:drawableStart="@drawable/water_drop_4_svgrepo_com__2_"
         android:inputType="number"
         android:hint="mL"
         android:gravity="center"
