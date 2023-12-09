@@ -4,7 +4,7 @@
     <item
         android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/bedtime_svgrepo_com"/>
+        android:icon="@drawable/home_svgrepo_com"/>
     <item
         android:id="@+id/profile"
         android:title="Profile"
@@ -12,5 +12,5 @@
     <item
         android:id="@+id/history"
         android:title="History"
-        android:icon="@drawable/alarm_clock_svgrepo_com__1_"/>
+        android:icon="@drawable/history_svgrepo_com"/>
 </menu>
