@@ -164,4 +164,27 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.delete(TABLE_INTAKE_RECORD, null, null);
         db.close();
     }
+    public String[][] getIntakeRecordForDate(String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String[]> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_INTAKE_RECORD +
+                        " WHERE " + COLUMN_DATE + " = ?",
+                new String[]{date});
+
+        if(cursor.moveToFirst()) {
+            do {
+                list.add(new String[]{
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AMOUNT))
+                });
+            } while(cursor.moveToNext());
+        }
+
+        db.close();
+        cursor.close();
+        return list.toArray(new String[0][0]);
+    }
+
 }

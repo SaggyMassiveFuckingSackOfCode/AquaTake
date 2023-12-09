@@ -2,6 +2,7 @@ package com.example.aquatake;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment;
 
 public class SecondFragment extends Fragment {
 
+    DatabaseManager Database;
+
     private TextView tvName, tvGender, tvAge, tvHeight, tvWeight, tvWakeUpTime, tvBedTime;
     private String[] profileData;
     public SecondFragment(){}
@@ -18,6 +21,7 @@ public class SecondFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_second, container, false);
+        Database = new DatabaseManager(getContext());
         tvName = view.findViewById(R.id.tvName);
         tvGender = view.findViewById(R.id.tvGender);
         tvAge = view.findViewById(R.id.tvAge);
@@ -25,7 +29,7 @@ public class SecondFragment extends Fragment {
         tvWeight = view.findViewById(R.id.tvWeight);
         tvWakeUpTime = view.findViewById(R.id.tvWakeUpTime);
         tvBedTime = view.findViewById(R.id.tvBedTime);
-        profileData = Home.Database.getProfileData();
+        profileData = Database.getProfileData();
         view.findViewById(R.id.btnSetUp).setOnClickListener(view1 -> startActivity(new Intent(getActivity(), SetupProfile.class)));
         updateProfile();
         return view;
