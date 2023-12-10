@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -20,31 +22,35 @@ public class SetupProfile extends AppCompatActivity {
     private String weight;
     private String wakeUpTime;
     private String bedTime;
+    private String activityLevel;
     private EditText etName;
-    private EditText etGender;
+
+    private Spinner spinnerGender;
     private EditText etAge;
     private EditText etHeight;
     private EditText etWeight;
     private EditText etWakeUpTime;
     private EditText etBedTime;
+    private Spinner spinnerActivityLevel;
     private DatabaseManager db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_profile);
         etName          = findViewById(R.id.etName);
-        etGender        = findViewById(R.id.etGender);
+        spinnerGender   = findViewById(R.id.spinnerGender);
         etAge           = findViewById(R.id.etAge);
         etHeight        = findViewById(R.id.etHeight);
         etWeight        = findViewById(R.id.etWeight);
         etWakeUpTime    = findViewById(R.id.etWakeUpTime);
         etBedTime       = findViewById(R.id.etBedTime);
+        spinnerActivityLevel = findViewById(R.id.spinnerActivityLevel);
+        populateSpinners();
         db = new DatabaseManager(this);
         if (db.hasExistingProfile()) {
             String[] profileData = db.getProfileData();
             etName.setText(profileData[0]);
-            etGender.setText(profileData[1]);
+            //gender line
             etAge.setText(profileData[2]);
             etHeight.setText(profileData[3]);
             etWeight.setText(profileData[4]);
@@ -52,17 +58,34 @@ public class SetupProfile extends AppCompatActivity {
             etBedTime.setText(profileData[6]);
         }
     }
+    private void populateSpinners(){
+        ArrayAdapter<CharSequence> activityLevelAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.activity_levels_array,
+                android.R.layout.simple_spinner_item
+        );
+        ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.gender_array,
+                android.R.layout.simple_spinner_item
+        );
+        activityLevelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerActivityLevel.setAdapter(activityLevelAdapter);
+        spinnerGender.setAdapter(genderAdapter);
+    }
 
     public void onClickConfirm(View view) {
         name        = etName.getText().toString().trim();
-        gender      = etGender.getText().toString().trim();
+        gender      = spinnerGender.getSelectedItem().toString();
         age         = etAge.getText().toString().trim();
         height      = etHeight.getText().toString().trim();
         weight      = etWeight.getText().toString().trim();
         wakeUpTime  = etWakeUpTime.getText().toString().trim();
         bedTime     = etBedTime.getText().toString().trim();
+        activityLevel = spinnerActivityLevel.getSelectedItem().toString();
         try {
-            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(age)
+            if (TextUtils.isEmpty(name) || TextUtils.isEmpty(age)
                     || TextUtils.isEmpty(height) || TextUtils.isEmpty(weight)
                     || TextUtils.isEmpty(wakeUpTime) || TextUtils.isEmpty(bedTime)) {
                 Toast.makeText(this, "Please fill in missing field(s)", Toast.LENGTH_SHORT).show();
@@ -75,7 +98,8 @@ public class SetupProfile extends AppCompatActivity {
                     Integer.parseInt(height),
                     Integer.parseInt(weight),
                     wakeUpTime,
-                    bedTime);
+                    bedTime,
+                    activityLevel);
             startActivity(new Intent(SetupProfile.this, Home.class));
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid number format for age, height, or weight", Toast.LENGTH_SHORT).show();

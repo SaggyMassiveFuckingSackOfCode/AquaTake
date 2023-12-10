@@ -1,0 +1,16 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="50dp" /> <!-- Adjust the radius as needed -->
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="50dp" /> <!-- Adjust the radius as needed -->
+                <solid android:color="@color/teal_700" /> <!-- Adjust the color as needed -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>

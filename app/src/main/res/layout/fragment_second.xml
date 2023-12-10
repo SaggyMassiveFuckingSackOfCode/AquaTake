@@ -9,20 +9,20 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintVertical_bias="0.027"
         app:srcCompat="@drawable/user_settings_filled_svgrepo_com" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="242dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,13 +30,13 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.14">
+        app:layout_constraintVertical_bias="0.064">
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="3dp"
             android:drawableEnd="@drawable/user_svgrepo_com"
             android:text="Name: "
             android:textSize="20dp" />
@@ -45,7 +45,7 @@
             android:id="@+id/tvGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="3dp"
             android:drawableEnd="@drawable/gender_mark_1_svgrepo_com"
             android:text="Gender: "
             android:textSize="20dp" />
@@ -54,7 +54,7 @@
             android:id="@+id/tvAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="3dp"
             android:drawableEnd="@drawable/hour_glass_svgrepo_com"
             android:text="Age: "
             android:textSize="20dp" />
@@ -63,7 +63,7 @@
             android:id="@+id/tvHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="3dp"
             android:drawableEnd="@drawable/human_height_alt_svgrepo_com__1_"
             android:text="Height: "
             android:textSize="20dp" />
@@ -72,7 +72,7 @@
             android:id="@+id/tvWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="3dp"
             android:drawableEnd="@drawable/weight_scale_svgrepo_com"
             android:text="Weight: "
             android:textSize="20dp" />
@@ -81,7 +81,7 @@
             android:id="@+id/tvWakeUpTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="3dp"
             android:drawableEnd="@drawable/alarm_clock_svgrepo_com__1_"
             android:text="Wake Up \ntime: "
             android:textSize="20dp" />
@@ -90,9 +90,18 @@
             android:id="@+id/tvBedTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
             android:drawableEnd="@drawable/bedtime_svgrepo_com"
-            android:layout_marginVertical="10dp"
             android:text="Bedtime: "
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvActivityLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:drawableEnd="@drawable/bedtime_svgrepo_com"
+            android:text="Activity Level: "
             android:textSize="20dp" />
     </LinearLayout>
 
@@ -103,8 +112,9 @@
         android:text="Edit Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.075"/>
+        app:layout_constraintVertical_bias="0.058" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

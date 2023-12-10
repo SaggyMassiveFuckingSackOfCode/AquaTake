@@ -61,7 +61,6 @@ public class ThirdFragment extends Fragment {
         }
         dateList.addAll(uniqueDates);
 
-        // Sort the dateList in ascending order
         Collections.sort(dateList, new Comparator<String>() {
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault());
 

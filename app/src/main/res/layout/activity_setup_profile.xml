@@ -26,15 +26,10 @@
             android:inputType="textPersonName"
             android:hint="Name" />
 
-        <EditText
-            android:id="@+id/etGender"
+        <Spinner
+            android:id="@+id/spinnerGender"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:drawableStart="@drawable/gender_mark_1_svgrepo_com"
-            android:drawablePadding="20dp"
-            android:inputType="textPersonName"
-            android:hint="Gender" />
+            android:layout_height="48dp" />
 
         <EditText
             android:id="@+id/etAge"
@@ -64,6 +59,19 @@
             android:drawablePadding="20dp"
             android:inputType="number"
             android:hint="Weight" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activity Level"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+        <Spinner
+            android:id="@+id/spinnerActivityLevel"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
 
         <EditText
             android:id="@+id/etWakeUpTime"
