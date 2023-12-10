@@ -13,11 +13,17 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="304dp"
-        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-6dp"
+        android:layout_marginTop="194dp"
+        android:layout_marginBottom="233dp"
         app:srcCompat="@drawable/logo" />
 
 </RelativeLayout>
