@@ -9,6 +9,4 @@ It's currently a work in progress and aims to provide users with a simple and ef
 - **Water Intake Tracking:** Track your daily water intake with a progress bar.
 - **SetupProfile:** Update your profile information.
 - **Database Integration:** Utilizes SQLite database to store user profiles and intake records.
-
-Ilabas mo na ang iyong tambol ang torotot mong itinago sa baol..
-Pwede kang gumamit ng kutsara't tinidor
+- **Notification Reminder:** Reminds you to drink water based on your activity level
