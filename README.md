@@ -5,8 +5,7 @@ It's currently a work in progress and aims to provide users with a simple and ef
 
 ## Features (Planned/In Development)
 
-- **Profile Setup:** Users will be able to set up their profile with personal details.
+- **Profile Setup:** Users will be able to set up their profile with personal details and also update their profile information.
 - **Water Intake Tracking:** Track your daily water intake with a progress bar.
-- **SetupProfile:** Update your profile information.
 - **Database Integration:** Utilizes SQLite database to store user profiles and intake records.
 - **Notification Reminder:** Reminds you to drink water based on your activity level
