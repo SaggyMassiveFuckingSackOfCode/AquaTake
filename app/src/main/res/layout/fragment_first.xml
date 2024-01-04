@@ -11,29 +11,29 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="311dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_centerVertical="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintVertical_bias="0.047"
         app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/tvProgress"
         android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
         android:drawableStart="@drawable/goal_svgrepo_com"
         android:gravity="center"
         android:text="PROGRESS / GOAL"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ProgressBar
@@ -58,26 +58,26 @@
         android:hint="mL"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <Button
         android:id="@+id/btnDrink"
-        android:layout_width="220dp"
-        android:layout_height="128dp"
-        android:drawableLeft="@drawable/freepik__character__inject_33"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/sirkol_button"
+        android:drawableStart="@drawable/freepik__bottle_of_water__inject_54"
         android:elevation="10dp"
         android:gravity="center"
         android:onClick="onClickDrink"
-        android:text="Drink"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etAmount"
-        app:layout_constraintVertical_bias="0.261" />
+        app:layout_constraintEnd_toEndOf="@+id/etAmount"
+        app:layout_constraintStart_toStartOf="@+id/etAmount"
+        app:layout_constraintTop_toBottomOf="@+id/etAmount"
+        app:layout_constraintVertical_bias="0.05" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

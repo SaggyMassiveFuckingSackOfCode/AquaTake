@@ -25,9 +25,7 @@ public class FirstFragment extends Fragment {
     private ProgressBar progressBar;
     private int totalIntake , intakeGoal;
 
-    public FirstFragment(){
-        // require a empty public constructor
-    }
+    public FirstFragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class FirstFragment extends Fragment {
             public void onClick(View view) {
                 try{
                     if(TextUtils.isEmpty(etAmount.getText().toString())){
-                        Toast.makeText(getActivity(), "Please enter empty field(s)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill empty field(s)", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Calendar calendar = Calendar.getInstance();

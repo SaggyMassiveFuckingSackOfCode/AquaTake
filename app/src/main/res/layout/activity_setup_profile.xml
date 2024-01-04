@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,22 +9,27 @@
 
     <LinearLayout
         android:id="@+id/inputLayout"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="355dp"
+        android:layout_height="420dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
 
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:ems="10"
             android:drawableStart="@drawable/user_svgrepo_com"
             android:drawablePadding="20dp"
-            android:inputType="textPersonName"
-            android:hint="Name" />
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName" />
 
         <Spinner
             android:id="@+id/spinnerGender"
@@ -35,30 +40,31 @@
             android:id="@+id/etAge"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:ems="10"
             android:drawableStart="@drawable/hour_glass_svgrepo_com"
             android:drawablePadding="20dp"
-            android:inputType="number"
-            android:hint="Age" />
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="number" />
+
         <EditText
             android:id="@+id/etHeight"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:ems="10"
             android:drawableStart="@drawable/human_height_alt_svgrepo_com__1_"
             android:drawablePadding="20dp"
-            android:inputType="number"
-            android:hint="Height" />
+            android:ems="10"
+            android:hint="Height"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/etWeight"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:ems="10"
             android:drawableStart="@drawable/weight_scale_svgrepo_com"
             android:drawablePadding="20dp"
-            android:inputType="number"
-            android:hint="Weight" />
+            android:ems="10"
+            android:hint="Weight"
+            android:inputType="number" />
 
         <TextView
             android:id="@+id/textView"
@@ -71,59 +77,60 @@
         <Spinner
             android:id="@+id/spinnerActivityLevel"
             android:layout_width="match_parent"
-            android:layout_height="48dp"/>
+            android:layout_height="48dp" />
 
         <EditText
             android:id="@+id/etWakeUpTime"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:ems="10"
+            android:cursorVisible="false"
             android:drawableStart="@drawable/alarm_clock_svgrepo_com__1_"
             android:drawablePadding="20dp"
-            android:inputType="none"
+            android:ems="10"
             android:focusable="false"
-            android:cursorVisible="false"
-            android:onClick="setTime"
             android:hint="Wakeup Time"
+            android:inputType="none"
+            android:onClick="setTime"
             tools:ignore="OnClick" />
 
         <EditText
             android:id="@+id/etBedTime"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:ems="10"
+            android:cursorVisible="false"
             android:drawableStart="@drawable/bedtime_svgrepo_com"
             android:drawablePadding="20dp"
-            android:inputType="none"
+            android:ems="10"
             android:focusable="false"
-            android:cursorVisible="false"
-            android:onClick="setTime"
-            android:hint="Bedtime" />
+            android:hint="Bedtime"
+            android:inputType="none"
+            android:onClick="setTime" />
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.027"
+        app:srcCompat="@drawable/logo" />
 
     <Button
         android:id="@+id/btnConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/inputLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:onClick="onClickConfirm"
-        android:text="Confirm" />
+        android:text="Confirm"
+        app:layout_constraintEnd_toEndOf="@+id/inputLayout"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/inputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_above="@+id/inputLayout"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="93dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="21dp"
-        app:srcCompat="@drawable/logo" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
