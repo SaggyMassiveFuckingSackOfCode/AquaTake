@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".FirstFragment">
-
+    tools:context="FirstFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -52,11 +51,11 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
-        android:ems="10"
         android:drawableStart="@drawable/water_drop_4_svgrepo_com__2_"
-        android:inputType="number"
-        android:hint="mL"
+        android:ems="10"
         android:gravity="center"
+        android:hint="mL"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
@@ -65,6 +64,8 @@
         android:id="@+id/btnDrink"
         android:layout_width="220dp"
         android:layout_height="128dp"
+        android:backgroundTint="#0092ff"
+        android:backgroundTintMode="src_in"
         android:drawableLeft="@drawable/freepik__character__inject_33"
         android:elevation="8dp"
         android:gravity="center"
@@ -72,14 +73,37 @@
         android:text="Drink"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
-        android:backgroundTint="#0092ff"
-        android:backgroundTintMode="src_in"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tipsTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/etAmount"
         app:layout_constraintVertical_bias="0.261" />
 
+    <TextView
+        android:id="@+id/tipsTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Tips or Quotations Here"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDrink" />
+
+    <ImageView
+        android:id="@+id/tipsImageView"
+        android:layout_width="116dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="68dp"
+        android:src="@drawable/waterdrop"
+        app:layout_constraintEnd_toEndOf="@+id/btnDrink"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/tipsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/btnDrink" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

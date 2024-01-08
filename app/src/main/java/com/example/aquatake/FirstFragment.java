@@ -21,11 +21,28 @@ import java.util.Date;
 public class FirstFragment extends Fragment {
     DatabaseManager db;
     private EditText etAmount;
-    private TextView tvProgress;
+    private TextView tvProgress, tipsTextView;
     private ProgressBar progressBar;
-    private int totalIntake , intakeGoal;
+    private int totalIntake, intakeGoal;
 
-    public FirstFragment(){}
+    // Array of quotations
+    private String[] quotations = {
+            "Stay hydrated!",
+            "Water is life.",
+            "Drink water, be happy!",
+            "Remember to sip water throughout the day.",
+            "The more you drink, the better you feel.",
+            "Water is your body's fuel. Drink up!",
+            "Hydrate to dominate!",
+            "Water: the elixir of life.",
+            "Don't forget to drink water!",
+            "Keep calm and stay hydrated."
+    };
+
+    private int currentQuotationIndex = 0;
+
+    public FirstFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,23 +51,30 @@ public class FirstFragment extends Fragment {
         etAmount = view.findViewById(R.id.etAmount);
         tvProgress = view.findViewById(R.id.tvProgress);
         progressBar = view.findViewById(R.id.progressBar);
+        tipsTextView = view.findViewById(R.id.tipsTextView);
         updateDisplay();
 
         view.findViewById(R.id.btnDrink).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
-                    if(TextUtils.isEmpty(etAmount.getText().toString())){
+                try {
+                    if (TextUtils.isEmpty(etAmount.getText().toString())) {
                         Toast.makeText(getActivity(), "Please fill empty field(s)", Toast.LENGTH_SHORT).show();
                         return;
                     }
+
                     Calendar calendar = Calendar.getInstance();
                     Date currentDate = calendar.getTime();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
                     String date = dateFormat.format(currentDate);
                     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
                     String time = timeFormat.format(currentDate);
+
+                    // Insert intake record
                     Home.Database.insertIntakeRecord(date, time, Integer.parseInt(etAmount.getText().toString()));
+
+                    // Display the next quotation
+                    displayNextQuotation();
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), "Invalid number format for age, height, or weight", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
@@ -62,25 +86,36 @@ public class FirstFragment extends Fragment {
             }
         });
 
-
-
         return view;
     }
-    private void updateDisplay(){
+
+    private void updateDisplay() {
         totalIntake = db.getTotalWaterIntakeForToday();
         intakeGoal = db.getRecommendedIntake();
-        tvProgress.setText(totalIntake + "ml / "+ intakeGoal +" ml");
-        int progress = (100 * totalIntake)/intakeGoal;
+        tvProgress.setText(totalIntake + "ml / " + intakeGoal + " ml");
+        int progress = (100 * totalIntake) / intakeGoal;
 
         animateProgressBar(progress);
 
         progressBar.setProgress(progress);
     }
+
     private void animateProgressBar(int newProgress) {
         // Use ObjectAnimator to animate the progress bar
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(progressBar, "progress", newProgress);
         progressAnimator.setDuration(500);  // Adjust the duration as needed (in milliseconds)
         progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
+    }
+
+    private void displayNextQuotation() {
+        // Display the next quotation in the array
+        if (currentQuotationIndex < quotations.length) {
+            tipsTextView.setText(quotations[currentQuotationIndex]);
+            currentQuotationIndex++;
+        } else {
+            // Reset the index if all quotations have been displayed
+            currentQuotationIndex = 0;
+        }
     }
 }
