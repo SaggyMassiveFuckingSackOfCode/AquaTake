@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="3dp"
-            android:drawableEnd="@drawable/bedtime_svgrepo_com"
+            android:drawableEnd="@drawable/activity_heart_svgrepo_com"
             android:text="Activity Level: "
             android:textSize="20dp" />
     </LinearLayout>

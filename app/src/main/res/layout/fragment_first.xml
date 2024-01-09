@@ -82,16 +82,17 @@
 
     <TextView
         android:id="@+id/tipsTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Tips or Quotations Here"
+        android:gravity="center"
+        android:text="I'm your drinking buddy"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.419"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDrink" />
 
@@ -99,11 +100,13 @@
         android:id="@+id/tipsImageView"
         android:layout_width="116dp"
         android:layout_height="136dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/waterdrop"
-        app:layout_constraintEnd_toEndOf="@+id/btnDrink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/tipsTextView"
-        app:layout_constraintTop_toBottomOf="@+id/btnDrink" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDrink"
+        app:layout_constraintVertical_bias="0.441" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
