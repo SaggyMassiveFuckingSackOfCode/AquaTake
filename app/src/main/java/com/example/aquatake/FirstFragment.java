@@ -1,7 +1,13 @@
 package com.example.aquatake;
 
 import android.animation.ObjectAnimator;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
@@ -25,7 +32,6 @@ public class FirstFragment extends Fragment {
     private ProgressBar progressBar;
     private int totalIntake, intakeGoal;
 
-    // Array of quotations
     private String[] quotations = {
             "Stay hydrated!",
             "Water is life.",
@@ -40,6 +46,7 @@ public class FirstFragment extends Fragment {
     };
 
     private int currentQuotationIndex = 0;
+    private CountDownTimer countDownTimer;
 
     public FirstFragment() {
     }
@@ -75,6 +82,12 @@ public class FirstFragment extends Fragment {
 
                     // Display the next quotation
                     displayNextQuotation();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        getActivity().startForegroundService(new Intent(getActivity(), TimerService.class));
+                    } else {
+                        getActivity().startService(new Intent(getActivity(), TimerService.class));
+                    }
+
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), "Invalid number format for age, height, or weight", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
