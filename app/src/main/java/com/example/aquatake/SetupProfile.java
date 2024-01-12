@@ -91,7 +91,8 @@ public class SetupProfile extends AppCompatActivity {
                 Toast.makeText(this, "Please fill in missing field(s)", Toast.LENGTH_SHORT).show();
                 return;
             }
-            db.insertSingleUserProfile(
+            db.UpdateUserProfile(
+                    AmbotSaImongLubot.loggedInUsername,
                     name,
                     gender,
                     Integer.parseInt(age),

@@ -15,6 +15,7 @@ public class SecondFragment extends Fragment {
     DatabaseManager Database;
 
     private TextView tvName, tvGender, tvAge, tvHeight, tvWeight, tvWakeUpTime, tvBedTime, tvActivityLevel;
+    DatabaseManager db;
     private String[] profileData;
     public SecondFragment(){}
 
@@ -31,7 +32,12 @@ public class SecondFragment extends Fragment {
         tvBedTime = view.findViewById(R.id.tvBedTime);
         tvActivityLevel = view.findViewById(R.id.tvActivityLevel);
         profileData = Database.getProfileData();
+        db = new DatabaseManager(getContext());
         view.findViewById(R.id.btnSetUp).setOnClickListener(view1 -> startActivity(new Intent(getActivity(), SetupProfile.class)));
+        view.findViewById(R.id.btnLogout).setOnClickListener(view1 -> {
+            db.logout();
+            startActivity(new Intent(getActivity(), MainActivity.class));
+        });
         updateProfile();
         return view;
     }
