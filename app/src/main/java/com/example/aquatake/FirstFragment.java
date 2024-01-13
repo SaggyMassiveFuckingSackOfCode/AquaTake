@@ -46,7 +46,6 @@ public class FirstFragment extends Fragment {
     };
 
     private int currentQuotationIndex = 0;
-    private CountDownTimer countDownTimer;
 
     public FirstFragment() {
     }
@@ -69,18 +68,13 @@ public class FirstFragment extends Fragment {
                         Toast.makeText(getActivity(), "Please fill empty field(s)", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                     Calendar calendar = Calendar.getInstance();
                     Date currentDate = calendar.getTime();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
                     String date = dateFormat.format(currentDate);
                     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
                     String time = timeFormat.format(currentDate);
-
-                    // Insert intake record
                     Home.Database.insertIntakeRecord(date, time, Integer.parseInt(etAmount.getText().toString()));
-
-                    // Display the next quotation
                     displayNextQuotation();
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         getActivity().startForegroundService(new Intent(getActivity(), TimerService.class));
@@ -114,20 +108,17 @@ public class FirstFragment extends Fragment {
     }
 
     private void animateProgressBar(int newProgress) {
-        // Use ObjectAnimator to animate the progress bar
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(progressBar, "progress", newProgress);
-        progressAnimator.setDuration(500);  // Adjust the duration as needed (in milliseconds)
+        progressAnimator.setDuration(500);
         progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
     }
 
     private void displayNextQuotation() {
-        // Display the next quotation in the array
         if (currentQuotationIndex < quotations.length) {
             tipsTextView.setText(quotations[currentQuotationIndex]);
             currentQuotationIndex++;
         } else {
-            // Reset the index if all quotations have been displayed
             currentQuotationIndex = 0;
         }
     }

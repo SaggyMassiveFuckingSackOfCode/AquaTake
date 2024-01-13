@@ -32,10 +32,9 @@ public class TimerService extends Service {
             countDownTimer.cancel();
         }
 
-        countDownTimer = new CountDownTimer(30000, 1000) { // 30 seconds countdown
+        countDownTimer = new CountDownTimer(10000, 1000) { //10sec para sa recording
             @Override
             public void onTick(long millisUntilFinished) {
-                // Update UI or do something on each tick if needed
             }
 
             @Override

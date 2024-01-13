@@ -54,7 +54,6 @@ public class ThirdFragment extends Fragment {
     private void populateSpinner() {
         String[][] intakeRecords = db.getIntakeRecord();
         List<String> dateList = new ArrayList<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault());
         Set<String> uniqueDates = new HashSet<>();
         for (String[] record : intakeRecords) {
             uniqueDates.add(record[0]);

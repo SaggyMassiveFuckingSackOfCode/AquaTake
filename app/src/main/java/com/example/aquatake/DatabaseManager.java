@@ -283,8 +283,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         int recommendedIntake = 0;
 
-        String loggedInUsername = AmbotSaImongLubot.loggedInUsername;
-
         String[] profileData = getProfileData();
 
         if (profileData != null && profileData.length >= 3) {

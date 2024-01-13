@@ -50,7 +50,6 @@ public class SetupProfile extends AppCompatActivity {
         if (db.hasExistingProfile()) {
             String[] profileData = db.getProfileData();
             etName.setText(profileData[0]);
-            //gender line
             etAge.setText(profileData[2]);
             etHeight.setText(profileData[3]);
             etWeight.setText(profileData[4]);

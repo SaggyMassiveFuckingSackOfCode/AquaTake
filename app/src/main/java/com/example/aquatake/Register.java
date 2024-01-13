@@ -38,6 +38,7 @@ public class Register extends AppCompatActivity {
                 db.registerCredential(this, username, password);
                 etUsername.setText("");
                 etPassword.setText("");
+                ((EditText)findViewById(R.id.etRegisterConfirmPassword)).setText("");
                 Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
